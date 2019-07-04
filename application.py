@@ -3,12 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid, jwt, datetime
 from functools import wraps
-
+from os import environ
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/dillanteagle/workspace/coach_logic_API/api.db'
+app.config['SECRET_KEY'] = environ.get('SECRET')
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_PATH')
 
 db = SQLAlchemy(app)
 
